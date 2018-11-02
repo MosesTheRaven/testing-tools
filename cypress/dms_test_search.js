@@ -1,0 +1,16 @@
+describe('DMS testing', function() {
+    it('Tries the login', function() {
+      cy.visit('https://dms.objectify.sk/dms-app')
+      cy.get('fieldset').as('loginForm')
+      cy.get('@loginForm').find('input[type="text"]').type('xxx')
+      cy.get('@loginForm').find('input[type="password"]').type('xxx')
+      cy.contains('Log in').click()
+      cy.contains('Filter')
+      cy.wait(1000)
+      cy.get('.dropdown > .form-control').as('searchInput')
+      cy.get('@searchInput').click()
+      cy.get('@searchInput').type('CELINE')
+      cy.get('.btn-primary').click()
+      cy.get('.col-sm-9').contains('CELINE')
+    })
+  })
